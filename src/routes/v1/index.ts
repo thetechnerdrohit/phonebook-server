@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
-import authRoute from './auth.route';
+// import authRoute from './auth.route';
 import docsRoute from './swagger.route';
-import userRoute from './user.route';
+// import userRoute from './user.route';
 import areaRoute from './area.route';
 import sellerRoute from './seller.route';
 import config from '../../config/config';
@@ -14,13 +14,21 @@ interface IRoute {
 }
 
 const defaultIRoute: IRoute[] = [
+  // {
+  //   path: '/auth',
+  //   route: authRoute,
+  // },
+  // {
+  //   path: '/users',
+  //   route: userRoute,
+  // },
   {
-    path: '/auth',
-    route: authRoute,
+    path: '/areas',
+    route: areaRoute,
   },
   {
-    path: '/users',
-    route: userRoute,
+    path: '/sellers',
+    route: sellerRoute,
   },
 ];
 
