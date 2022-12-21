@@ -10,7 +10,7 @@ services:
     networks:
       - backend
   app:
-    container_name: ts-node-app
+    container_name: phonebook-app-prod
     build: 
       context: .
       dockerfile: Dockerfile
