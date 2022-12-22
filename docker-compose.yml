@@ -22,7 +22,7 @@ services:
     ports:
       - ${PORT}:${PORT}
     environment: 
-      - MONGODB_URL=mongodb+srv://phonebook:pzTO0qQEaR3B2IDM@phonebook.eb9kbcw.mongodb.net/?retryWrites=true&w=majority
+      - MONGODB_URL=${MONGODB_URL}
       - CLIENT_URL=${CLIENT_URL}
     links: 
       - mongo  
