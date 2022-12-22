@@ -17,8 +17,13 @@ const areaSchema = new mongoose.Schema<IAreaDoc, IAreaModel>(
     },
     description: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
+    },
+    isDeleted: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
   },
   {

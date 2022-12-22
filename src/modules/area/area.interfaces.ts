@@ -5,6 +5,7 @@ export interface IArea {
   areaName: string;
   cityName: string;
   description: string;
+  isDeleted: boolean;
 }
 
 export interface IAreaDoc extends IArea, Document {

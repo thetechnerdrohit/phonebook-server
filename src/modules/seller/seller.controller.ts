@@ -13,8 +13,8 @@ export const createSeller = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const getSellers = catchAsync(async (req: Request, res: Response) => {
-  const filter = pick(req.query, ['areaId']);
-  const options: IOptions = pick(req.query, ['sortBy', 'limit', 'page', 'projectBy']);
+  const filter = pick({ ...req.query, isDeleted: false }, ['areaId', 'isDeleted']);
+  const options: IOptions = pick({ ...req.query, limit: 20 }, ['sortBy', 'limit', 'page', 'projectBy']);
   const result = await sellerService.querySellers(filter, options);
   res.send(result);
 });

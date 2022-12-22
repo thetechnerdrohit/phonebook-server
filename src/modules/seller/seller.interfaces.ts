@@ -7,6 +7,7 @@ export interface ISeller {
   sellerShopName: string;
   sellerContact: number;
   sellerAddress: string;
+  isDeleted: boolean;
 }
 
 export interface ISellerDoc extends ISeller, Document {

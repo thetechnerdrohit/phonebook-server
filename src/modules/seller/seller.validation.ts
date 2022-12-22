@@ -8,6 +8,7 @@ const createUserBody: Record<keyof NewCreatedSeller, any> = {
   sellerShopName: Joi.string().required(),
   sellerContact: Joi.string().min(10).max(10).required(),
   sellerAddress: Joi.string().required(),
+  isDeleted: Joi.bool(),
 };
 
 export const createUser = {

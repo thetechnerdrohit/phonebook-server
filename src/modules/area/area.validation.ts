@@ -5,7 +5,8 @@ import { NewCreatedArea } from './area.interfaces';
 const createUserBody: Record<keyof NewCreatedArea, any> = {
   areaName: Joi.string().required(),
   cityName: Joi.string().required(),
-  description: Joi.string().required(),
+  description: Joi.string(),
+  isDeleted: Joi.bool(),
 };
 
 export const createUser = {

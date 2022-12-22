@@ -13,7 +13,7 @@ export const createArea = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const getAreas = catchAsync(async (req: Request, res: Response) => {
-  const filter = pick(req.query, ['areaName']);
+  const filter = pick({ ...req.query, isDeleted: false }, ['areaName', 'isDeleted']);
   const options: IOptions = pick(req.query, ['sortBy', 'limit', 'page', 'projectBy']);
   const result = await areaService.queryAreas(filter, options);
   res.send(result);
@@ -42,3 +42,30 @@ export const deleteArea = catchAsync(async (req: Request, res: Response) => {
     res.status(httpStatus.NO_CONTENT).send();
   }
 });
+
+// const migrateAreaWithSellers = () => {
+//   await Promise.all(
+//     areaData.map(async (area) => {
+//       const newArea = {
+//         areaName: area.areaName,
+//         cityName: area.cityName,
+//         description: '',
+//         isDeleted: area.is_deleted === 'Y',
+//       };
+//       const user: any = await areaService.createArea(newArea);
+//       sellersData
+//         .filter((x) => x.areaId === area.id)
+//         .map(async (seller) => {
+//           const newSeller = {
+//             areaId: user.id,
+//             sellerName: seller.sellerName || '',
+//             sellerShopName: seller.shopName,
+//             sellerContact: seller.contact,
+//             sellerAddress: seller.address || '',
+//             isDeleted: seller.is_deleted === 'Y',
+//           };
+//           await sellerService.createSeller(newSeller);
+//         });
+//     })
+//   );
+// }
