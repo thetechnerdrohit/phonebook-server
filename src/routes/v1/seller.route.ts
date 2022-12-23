@@ -17,8 +17,8 @@ router
 router
   .route('/:sellerId')
   .get(auth('getSeller'), validate(sellerValidation.getSeller), sellerController.getSeller)
-  .patch(auth('manageUsers'), validate(sellerValidation.updateSeller), sellerController.updateSeller)
-  .delete(auth('manageUsers'), validate(sellerValidation.deleteSeller), sellerController.deleteSeller);
+  .put(auth('updateSeller'), validate(sellerValidation.updateSeller), sellerController.updateSeller)
+  .delete(auth('deleteSeller'), validate(sellerValidation.deleteSeller), sellerController.deleteSeller);
 
 export default router;
 

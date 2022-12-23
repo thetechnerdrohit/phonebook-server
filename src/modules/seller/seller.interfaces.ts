@@ -15,7 +15,7 @@ export interface ISellerDoc extends ISeller, Document {
 }
 
 export interface ISellerModel extends Model<ISellerDoc> {
-  isSellerTaken(sellerName: string, excludeUserId?: mongoose.Types.ObjectId): Promise<boolean>;
+  isShopNameTaken(sellerShopName: string, excludeUserId?: mongoose.Types.ObjectId): Promise<boolean>;
   paginate(filter: Record<string, any>, options: Record<string, any>): Promise<QueryResult>;
 }
 

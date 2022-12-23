@@ -13,8 +13,8 @@ router
 router
   .route('/:areaId')
   .get(auth('getArea'), validate(areaValidation.getArea), areaController.getArea)
-  .patch(auth('manageUsers'), validate(areaValidation.updateArea), areaController.updateArea)
-  .delete(auth('manageUsers'), validate(areaValidation.deleteArea), areaController.deleteArea);
+  .patch(auth('updateArea'), validate(areaValidation.updateArea), areaController.updateArea)
+  .delete(auth('deleteArea'), validate(areaValidation.deleteArea), areaController.deleteArea);
 
 export default router;
 

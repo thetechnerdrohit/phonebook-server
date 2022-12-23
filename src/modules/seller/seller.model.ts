@@ -13,7 +13,6 @@ const sellerSchema = new mongoose.Schema<ISellerDoc, ISellerModel>(
     sellerName: {
       type: String,
       required: false,
-      trim: true,
     },
     sellerShopName: {
       type: String,
@@ -53,7 +52,7 @@ sellerSchema.plugin(paginate);
  * @returns {Promise<boolean>}
  */
 sellerSchema.static(
-  'isSellerTaken',
+  'isShopNameTaken',
   async function (sellerShopName: string, excludeUserId: mongoose.ObjectId): Promise<boolean> {
     const seller = await this.findOne({ sellerShopName, _id: { $ne: excludeUserId } });
     return !!seller;

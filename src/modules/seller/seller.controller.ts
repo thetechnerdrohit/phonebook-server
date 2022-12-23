@@ -38,7 +38,9 @@ export const updateSeller = catchAsync(async (req: Request, res: Response) => {
 
 export const deleteSeller = catchAsync(async (req: Request, res: Response) => {
   if (typeof req.params['sellerId'] === 'string') {
-    await sellerService.deleteSellerById(new mongoose.Types.ObjectId(req.params['sellerId']));
+    // await sellerService.deleteSellerById(new mongoose.Types.ObjectId(req.params['sellerId']));
+    await sellerService.updateSellerById(new mongoose.Types.ObjectId(req.params['sellerId']), { isDeleted: true });
+
     res.status(httpStatus.NO_CONTENT).send();
   }
 });

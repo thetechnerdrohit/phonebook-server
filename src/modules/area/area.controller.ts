@@ -14,7 +14,7 @@ export const createArea = catchAsync(async (req: Request, res: Response) => {
 
 export const getAreas = catchAsync(async (req: Request, res: Response) => {
   const filter = pick({ ...req.query, isDeleted: false }, ['areaName', 'isDeleted']);
-  const options: IOptions = pick(req.query, ['sortBy', 'limit', 'page', 'projectBy']);
+  const options: IOptions = pick({ ...req.query, limit: 300 }, ['sortBy', 'limit', 'page', 'projectBy']);
   const result = await areaService.queryAreas(filter, options);
   res.send(result);
 });
@@ -38,7 +38,9 @@ export const updateArea = catchAsync(async (req: Request, res: Response) => {
 
 export const deleteArea = catchAsync(async (req: Request, res: Response) => {
   if (typeof req.params['areaId'] === 'string') {
-    await areaService.deleteAreaById(new mongoose.Types.ObjectId(req.params['areaId']));
+    // await areaService.deleteAreaById(new mongoose.Types.ObjectId(req.params['areaId']));
+    await areaService.updateAreaById(new mongoose.Types.ObjectId(req.params['areaId']), { isDeleted: true });
+
     res.status(httpStatus.NO_CONTENT).send();
   }
 });

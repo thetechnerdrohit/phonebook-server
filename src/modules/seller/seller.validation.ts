@@ -4,10 +4,10 @@ import { NewCreatedSeller } from './seller.interfaces';
 
 const createUserBody: Record<keyof NewCreatedSeller, any> = {
   areaId: Joi.required().custom(objectId),
-  sellerName: Joi.string().required(),
+  sellerName: Joi.string().optional(),
   sellerShopName: Joi.string().required(),
   sellerContact: Joi.string().min(10).max(10).required(),
-  sellerAddress: Joi.string().required(),
+  sellerAddress: Joi.string(),
   isDeleted: Joi.bool(),
 };
 
@@ -44,10 +44,13 @@ export const updateSeller = {
   }),
   body: Joi.object()
     .keys({
+      id: Joi.string(),
+      areaId: Joi.string(),
       sellerName: Joi.string(),
       sellerShopName: Joi.string(),
       sellerContact: Joi.number(),
       sellerAddress: Joi.string(),
+      isDeleted: Joi.bool(),
     })
     .min(1),
 };

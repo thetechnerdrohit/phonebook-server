@@ -11,8 +11,8 @@ import { ISellerDoc, UpdateSellerBody, NewCreatedSeller } from './seller.interfa
  * @returns {Promise<ISellerDoc>}
  */
 export const createSeller = async (sellerBody: NewCreatedSeller): Promise<ISellerDoc> => {
-  if (await Seller.isSellerTaken(sellerBody.sellerName)) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Seller already exsit');
+  if (await Seller.isShopNameTaken(sellerBody.sellerShopName)) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Shop name already exist');
   }
   return Seller.create(sellerBody);
 };
@@ -57,8 +57,8 @@ export const updateSellerById = async (
   if (!seller) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Seller not found');
   }
-  if (updateBody.sellerName && (await Seller.isSellerTaken(updateBody.sellerName, sellerId))) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Seller name already exist');
+  if (updateBody.sellerShopName && (await Seller.isShopNameTaken(updateBody.sellerShopName, sellerId))) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Shop name already exist');
   }
   Object.assign(seller, updateBody);
   await seller.save();
